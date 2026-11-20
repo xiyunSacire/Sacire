@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>个人作品集与项目展台 | Portfolio</title>
+  <meta name="description" content="个人作品展示与现代交互式个人网站">
+  
+  <!-- 网页标签页图标 (Favicon) - 专属折纸螺旋六芒星 (自适应浅色/深色标签栏) -->
+  <link rel="icon" type="image/svg+xml" href="images/favicon-adaptive.svg">
+  <link rel="icon" type="image/png" href="images/favicon-star.png">
+  <link rel="apple-touch-icon" href="images/favicon-star.png">
+  
+  <!-- 引入优质无衬线字体与展示字体 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+  <!-- 顶部轻量滚动进度条 -->
+  <div class="scroll-progress-container">
+    <div class="scroll-progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- 自定义灵动跟随光标 (桌面端) -->
+  <div class="custom-cursor-dot" id="cursorDot"></div>
+  <div class="custom-cursor-outline" id="cursorOutline"></div>
+
+  <!-- 背景流光与微粒画布 -->
+  <canvas id="ambientCanvas" class="ambient-canvas"></canvas>
+  <div class="ambient-mesh"></div>
+
+  <!-- 固定顶部导航栏 -->
+  <header class="navbar" id="navbar">
+    <div class="nav-brand">
+      <a href="#hero" class="brand-logo">
+        <span class="logo-badge">PORTFOLIO</span>
+        <span class="logo-name">Sacire<span class="accent-dot">.</span></span>
+      </a>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#hero" class="nav-item active" data-index="0">关于我</a>
+      <a href="#project-1" class="nav-item" data-index="1">Agent-Arena</a>
+      <a href="#project-2" class="nav-item" data-index="2">Skill-Manager</a>
+      <a href="#project-3" class="nav-item" data-index="3">鸿蒙/移动端</a>
+      <a href="#contact" class="nav-item" data-index="4">更多&联系</a>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="status-indicator" title="当前状态：可承接新项目 / 寻求机会">
+        <span class="status-dot"></span>
+        <span class="status-text">Open for Projects</span>
+      </div>
+      <a href="#contact" class="btn btn-sm btn-primary">即刻交流</a>
+    </div>
+  </header>
+
+  <!-- 右侧固定的页面快速切换指示器 (上下滚轮/点击直达) -->
+  <aside class="side-pagination" id="sidePagination">
+    <div class="side-track">
+      <button class="side-dot active" data-target="0" aria-label="第1页：个人简介">
+        <span class="dot-label">01 简介</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="side-dot" data-target="1" aria-label="第2页：Agent-Arena">
+        <span class="dot-label">02 Agent-Arena</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="side-dot" data-target="2" aria-label="第3页：dsh-skill-manager">
+        <span class="dot-label">03 Skill-Manager</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="side-dot" data-target="3" aria-label="第4页：鸿蒙与移动端开发">
+        <span class="dot-label">04 鸿蒙/移动端</span>
+        <span class="dot-circle"></span>
+      </button>
+      <button class="side-dot" data-target="4" aria-label="第5页：更多与联系">
+        <span class="dot-label">05 联系</span>
+        <span class="dot-circle"></span>
+      </button>
+    </div>
+    <div class="side-progress-counter">
+      <span class="current-num" id="currentSectionNum">01</span>
+      <span class="divider">/</span>
+      <span class="total-num">05</span>
+    </div>
+  </aside>
+
+  <!-- 全屏上下滚动主体容器 (采用 Full-Page Snap 结构) -->
+  <main class="snap-container" id="snapContainer">
+
+    <!-- =================================================================
+         第1页：个人基本信息 (HERO SECTION) - 【您可以在此修改您的个人信息】
+         ================================================================= -->
+    <section class="snap-section hero-section" id="hero" data-index="0">
+      <div class="section-inner container">
+        <div class="hero-grid">
+          <!-- 左侧：文案与核心信息 -->
+          <div class="hero-content">
+            <div class="hero-tag">
+              <span>欢迎来到我的数字展厅</span>
+            </div>
+            
+            <!-- 主标题与职业角色 -->
+            <h1 class="hero-title">
+              我是 <span class="text-highlight">熙云Sacire</span>
+              <br>
+              <span class="gradient-text">一名热爱计算机行业的创作者</span>
+            </h1>
+
+            <!-- 个人简介描述 -->
+            <p class="hero-desc">
+              热衷于探索计算机科学的广阔天地与数字化创新，享受用代码将构想转化为现实的创造过程。兼具扎实的算法与系统工程实践基础，在深度学习、大模型与 Agent 工作流、国产海光 DCU / CUDA 异构计算、Linux 容器化及全栈开发等方面持续探索。保持对底层逻辑与前沿技术的纯粹好奇，致力于打造严谨、高效且富有价值的工程作品。
+            </p>
+
+            <!-- 核心优势 / 技术标签小徽章 (精简风格) -->
+            <div class="hero-skills">
+              <span class="skill-pill">AI & LLM & Agent</span>
+              <span class="skill-pill">Deep Learning & CV</span>
+              <span class="skill-pill">CUDA & 海光DCU</span>
+              <span class="skill-pill">Linux & Docker & 全栈</span>
+              <button class="skill-more-btn open-modal-btn" data-modal="modal-skills" title="点击查看全部技能清单">
+                <span>完整技能树</span>
+                <span style="font-size: 0.9em;">→</span>
+              </button>
+            </div>
+
+            <!-- 操作按钮组 -->
+            <div class="hero-cta-group">
+              <a href="#project-1" class="btn btn-primary btn-lg magnetic">
+                <span>浏览精选项目</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+              <!-- 可把 href 替换为您的简历文件下载路径 -->
+              <a href="#contact" class="btn btn-outline btn-lg magnetic">
+                <span>获取简历 / 联系</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+              </a>
+            </div>
+
+            <!-- 社交与外部链接 -->
+            <div class="hero-socials">
+              <span class="social-label">Find me on:</span>
+              <a href="https://github.com/xiyunSacire" target="_blank" rel="noreferrer" class="social-link" title="GitHub: xiyunSacire (熙云)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              </a>
+              <a href="https://mail.qq.com" target="_blank" rel="noreferrer" class="social-link" title="QQ邮箱: 1978143780@qq.com (打开网页版)">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </a>
+              <a href="https://blog.csdn.net/xiyunSacire?type=blog" target="_blank" rel="noreferrer" class="social-link" title="CSDN 博客: 熙云Sacire">
+                <span class="social-text-icon">博</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 右侧：现代交互立体质感卡片 / 个人立像与状态展示 -->
+          <div class="hero-visual">
+            <div class="profile-card-wrapper tilt-element" data-tilt-max="10">
+              <div class="profile-card">
+                <div class="card-glass-glow"></div>
+                <div class="profile-avatar-box">
+                  <img src="images/sora.png" alt="Sacire Avatar" class="profile-avatar-img">
+                </div>
+
+                <div class="profile-info-footer">
+                  <div class="profile-meta">
+                    <span class="meta-name">熙云Sacire</span>
+                    <span class="meta-location"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align: -1px; margin-right: 4px; opacity: 0.7;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>现居湖北宜昌 · 随时联系</span>
+                  </div>
+                  <div class="profile-stats">
+                    <div class="stat-item">
+                      <span class="stat-value">5+</span>
+                      <span class="stat-name">工程项目</span>
+                    </div>
+                    <div class="stat-item">
+                      <span class="stat-value">100%</span>
+                      <span class="stat-name">热情</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 浮动在卡片周边的灵动标签 (无Emoji，现代质感点缀) -->
+                <div class="floating-badge badge-top-right">
+                  <span class="badge-dot dot-cyan"></span>
+                  <span class="badge-text">DCU / CUDA 算力</span>
+                </div>
+                <div class="floating-badge badge-bottom-left">
+                  <span class="badge-dot dot-indigo"></span>
+                  <span class="badge-text">AI & Agent 架构</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 底部轻提示：往下滚动探索更多 -->
+        <a href="#project-1" class="scroll-down-hint" aria-label="向下滚动">
+          <span class="hint-text">SCROLL TO EXPLORE</span>
+          <div class="mouse-icon">
+            <div class="wheel"></div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         第2页：重点项目 01 (FLAGSHIP PROJECT 01) - 【Agent-Arena】
+         ================================================================= -->
+    <section class="snap-section project-section" id="project-1" data-index="1">
+      <div class="section-inner container">
+        <div class="section-header">
+          <div class="section-number">PROJECT 01 / 03</div>
+          <h2 class="section-title">Agent-Arena · 语言模型实时评测对战平台</h2>
+        </div>
+
+        <div class="project-showcase-grid">
+          <!-- 项目信息描述栏 -->
+          <div class="project-info-panel">
+            <div class="project-meta-badges">
+              <span class="pill pill-primary">FastAPI</span>
+              <span class="pill">WebSocket</span>
+              <span class="pill">LLM-as-a-Judge</span>
+              <span class="pill">分布式 C/S 架构</span>
+              <span class="pill">Python</span>
+            </div>
+
+            <h3 class="project-headline">提供可实时发布任务对本地模型进行综合评估的对战平台</h3>
+
+            <p class="project-summary">
+              针对本地大模型与微调 Agent 缺乏轻量、灵活、高频横向评测工具的痛点，构建了这套轻量级分布式任务发布与评测对战系统。采用服务端（Arena Server）与客户端（Student Client）双端架构，基于高并发 WebSocket 实现毫秒级任务广播、结果回传与大模型智能自动化评分。
+            </p>
+
+            <ul class="project-features-list">
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>分布式任务广播与回传：</strong>服务端基于 FastAPI + WebSocket 实时向多客户端广播测试任务，支持高并发长连接状态维护与断线自动重连。</span>
+              </li>
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>LLM-as-a-Judge 自动评分：</strong>内置大模型智能评估机制（LLMEvaluator），自动对比各端模型提交的答案，多维度生成评估打分与反馈。</span>
+              </li>
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>轻量解耦与极简接入：</strong>客户端提供优雅的 <code>@client.on_task</code> 装饰器，支持同步与异步逻辑，两行代码即可接入任何本地模型（vLLM / Ollama）参与同台竞技。</span>
+              </li>
+            </ul>
+
+            <div class="project-actions">
+              <a href="https://github.com/xiyunSacire/Agent-Arena" class="btn btn-primary magnetic" target="_blank" rel="noreferrer">
+                <span>查看仓库 GitHub</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <button class="btn btn-outline open-modal-btn" data-modal="modal-p1">
+                <span>技术架构复盘 →</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 项目视觉展示栏 (方案一：实时对战终端模拟器) -->
+          <div class="project-visual-panel">
+            <div class="mockup-window terminal-window tilt-element" data-tilt-max="7">
+              <div class="mockup-header terminal-header">
+                <div class="mockup-dots">
+                  <span class="mock-dot red"></span>
+                  <span class="mock-dot yellow"></span>
+                  <span class="mock-dot green"></span>
+                </div>
+                <div class="terminal-title">arena-server@hbpu: ~ (WebSocket Live Stream)</div>
+                <div class="terminal-status">
+                  <span class="pulse-dot-sm"></span>
+                  <span>ONLINE</span>
+                </div>
+              </div>
+              <div class="mockup-body terminal-body">
+                <div class="terminal-screen" id="arenaTerminalScreen">
+                  <div class="terminal-logs" id="terminalLogs">
+                    <!-- 动态对战与评测日志由此自动流式注入 -->
+                  </div>
+                </div>
+
+                <!-- 终端底部状态统计栏 -->
+                <div class="terminal-footer">
+                  <div class="term-stat">
+                    <span class="term-stat-label">PROTOCOL</span>
+                    <span class="term-stat-val">WebSocket</span>
+                  </div>
+                  <div class="term-stat">
+                    <span class="term-stat-label">JUDGE ENGINE</span>
+                    <span class="term-stat-val text-cyan">LLM-as-a-Judge</span>
+                  </div>
+                  <div class="term-stat">
+                    <span class="term-stat-label">LATENCY</span>
+                    <span class="term-stat-val text-emerald">&lt; 2.4 ms</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         第3页：重点项目 02 (FLAGSHIP PROJECT 02) - 【全栈平台或SaaS产品】
+         ================================================================= -->
+    <section class="snap-section project-section" id="project-2" data-index="2">
+      <div class="section-inner container">
+        <div class="section-header">
+          <div class="section-number">PROJECT 02 / 03</div>
+          <h2 class="section-title">dsh-skill-manager · DeepSeek Harness 技能记忆管理器</h2>
+        </div>
+
+        <div class="project-showcase-grid reverse-layout">
+          <!-- 项目视觉展示栏 (左侧排列，形成交错视觉韵律) -->
+          <div class="project-visual-panel">
+            <div class="mockup-window tilt-element dsh-window-wrapper" data-tilt-max="8">
+              <div class="mockup-header dsh-window-header">
+                <div class="mockup-dots">
+                  <span class="mock-dot red"></span>
+                  <span class="mock-dot yellow"></span>
+                  <span class="mock-dot green"></span>
+                </div>
+                <div class="dsh-breadcrumb">
+                  <span>DSH</span>
+                  <span class="crumb-sep">/</span>
+                  <span>Plugins</span>
+                  <span class="crumb-sep">/</span>
+                  <span class="crumb-active">Skill Manager</span>
+                </div>
+                <div class="dsh-rpc-badge">
+                  <span class="pulse-dot-sm"></span>
+                  <span>RPC Active</span>
+                </div>
+              </div>
+              
+              <div class="mockup-body dsh-window-body">
+                <div class="dsh-body-container">
+                  <!-- DSH 侧边扩展插槽栏 (演示 sidebar.footer.action 挂载点) -->
+                  <div class="dsh-nav-rail">
+                    <div class="dsh-nav-group">
+                      <div class="dsh-nav-icon" title="Chat">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                      </div>
+                      <div class="dsh-nav-icon" title="Workspaces">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"></path></svg>
+                      </div>
+                      <div class="dsh-nav-icon" title="Prompts">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                      </div>
+                    </div>
+                    <div class="dsh-nav-group">
+                      <div class="dsh-nav-icon dsh-slot-highlight" title="已挂载插件: sidebar.footer.action">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 插件核心技能管理视图 -->
+                  <div class="dsh-main-view">
+                    <div class="dsh-search-row">
+                      <div class="dsh-search-input">
+                        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <span>Filter skills (fuzzy / tags)...</span>
+                      </div>
+                      <span class="dsh-count-tag">3 Active Skills</span>
+                    </div>
+
+                    <div class="dsh-skill-card-list">
+                      <!-- 技能卡片 1: 伴生管理技能 -->
+                      <div class="dsh-skill-card">
+                        <div class="dsh-skill-top">
+                          <div class="dsh-skill-title">
+                            <span class="skill-name">dsh-skill-management</span>
+                            <span class="dsh-pill-badge badge-companion">Companion Skill</span>
+                          </div>
+                          <span class="dsh-status-pill status-active">Active</span>
+                        </div>
+                        <p class="dsh-skill-desc">Agent 自治型能力扩展模块，允许大模型在会话执行中自主探测、提炼与持久化存储新能力。</p>
+                      </div>
+
+                      <!-- 技能卡片 2: 增强检索 -->
+                      <div class="dsh-skill-card">
+                        <div class="dsh-skill-top">
+                          <div class="dsh-skill-title">
+                            <span class="skill-name">web-search-enhanced</span>
+                            <span class="dsh-pill-badge badge-custom">Custom Skill</span>
+                          </div>
+                          <span class="dsh-status-pill status-active">Active</span>
+                        </div>
+                        <p class="dsh-skill-desc">多源实时网络检索与 HTML 正文语义清洗提取工具，支持 Markdown 结构化输出。</p>
+                      </div>
+
+                      <!-- 技能卡片 3: 核心受保护技能 -->
+                      <div class="dsh-skill-card">
+                        <div class="dsh-skill-top">
+                          <div class="dsh-skill-title">
+                            <span class="skill-name">code-sandbox-runner</span>
+                            <span class="dsh-pill-badge badge-system">Protected Core</span>
+                          </div>
+                          <span class="dsh-status-pill status-locked">Protected</span>
+                        </div>
+                        <p class="dsh-skill-desc">沙箱代码安全执行环境。受保护内置核心技能，底层拦截防止意外修改与误删除。</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="dsh-footer-bar">
+                  <div class="dsh-path-text">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    <span>Storage: ~/.dsh/skills/ (Physical Sync)</span>
+                  </div>
+                  <span class="dsh-rpc-meta">Typert RPC · 0.8ms</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 项目信息描述栏 -->
+          <div class="project-info-panel">
+            <div class="project-meta-badges">
+              <span class="pill pill-primary">TypeScript</span>
+              <span class="pill">React 18</span>
+              <span class="pill">DSH Plugin 生态</span>
+              <span class="pill">Node ESM / esbuild</span>
+              <span class="pill">Typert RPC</span>
+            </div>
+
+            <h3 class="project-headline">为 DeepSeek Harness 提供底层持久化技能记忆的可视化观测与生命周期管理</h3>
+
+            <p class="project-summary">
+              <code>dsh-skill-manager</code> 是深度集成于 DeepSeek Harness (DSH Desktop / Web) 的底层 Web UI 插件。打破以往 AI 智能体能力“隐式生效、不可见、黑盒运行”的局限，为开发者和高阶用户建立对宿主机物理技能目录（<code>~/.dsh/skills</code>）的直接透视与控制权，打通宿主与客户端双端通信，形成完整的 Agent 技能自给自足闭环。
+            </p>
+
+            <ul class="project-features-list">
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>原生深度插槽与设计系统契合：</strong>无缝挂载于 DSH 原生扩展点 <code>sidebar.footer.action</code>，深度复用官方设计令牌（<code>--dsw-alias-*</code>），保持与宿主环境浑然一体的原生质感与中英文双语支持。</span>
+              </li>
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>真实物理存储映射与安全防线：</strong>直连宿主机物理文件系统，实时解析 Markdown Frontmatter 描述与触发规则；内置受保护技能（bundled skills）安全拦截机制，杜绝核心模块误删风险。</span>
+              </li>
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>Agent 自给自足扩展闭环：</strong>配套集成 <code>dsh-skill-management</code> 伴生 Agent 技能，赋能大模型在执行复杂任务时，具备自主查阅、设计、编写并持久化存储新能力的能力，实现技能持续自生长。</span>
+              </li>
+            </ul>
+
+            <div class="project-actions">
+              <a href="https://github.com/xiyunSacire/dsh-skill-manager" class="btn btn-primary magnetic" target="_blank" rel="noreferrer">
+                <span>开源代码仓库</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </a>
+              <a href="https://github.com/xiyunSacire/dsh-skill-manager#readme" class="btn btn-outline magnetic" target="_blank" rel="noreferrer">
+                <span>技术规范文档</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+              </a>
+              <button class="btn btn-ghost open-modal-btn" data-modal="modal-p2">
+                <span>核心亮点解析 →</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         第4页：重点项目 03 (FLAGSHIP PROJECT 03) - 【鸿蒙原生与移动端开发】
+         ================================================================= -->
+    <section class="snap-section project-section" id="project-3" data-index="3">
+      <div class="section-inner container">
+        <div class="section-header">
+          <div class="section-number">PROJECT 03 / 03</div>
+          <h2 class="section-title">鸿蒙原生与移动端开发实践 · HarmonyOS & Android Native</h2>
+        </div>
+
+        <div class="project-showcase-grid">
+          <!-- 项目信息描述栏 -->
+          <div class="project-info-panel">
+            <div class="project-meta-badges">
+              <span class="pill pill-primary">HarmonyOS NEXT</span>
+              <span class="pill">ArkTS / ArkUI</span>
+              <span class="pill">Stage 模型</span>
+              <span class="pill">Android 原生</span>
+              <span class="pill">局域网边缘通信</span>
+            </div>
+
+            <h3 class="project-headline">具备华为鸿蒙原生应用与 Android 移动端全流程工程开发落地能力</h3>
+
+            <p class="project-summary">
+              以实战项目（如 <code>OxyRover</code> 鸿蒙原生端工程等）为载体，沉淀了从系统架构设计、声明式 UI 构建到端侧边缘交互的完整移动端开发经验。熟练运用华为鸿蒙 <strong>ArkTS + ArkUI（Stage 模型）</strong> 研发高性能平板与移动端原生应用，深入掌握组件生命周期、Navigation 路由导航、Preferences 本地轻量持久化及复杂局域网异步通信；同时具备 <strong>Android 原生应用</strong> 开发经验，能针对特定行业终端与复杂交互需求提供流畅、稳定、自主可控的原生级解决方案。
+            </p>
+
+            <ul class="project-features-list">
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>鸿蒙原生全栈开发能力：</strong>熟练掌握 ArkTS / ArkUI 声明式组件开发与 Stage 模型，深入应用 Navigation 页面路由栈、HTTP 异步通信、Canvas 实时渲染、Preferences 存储与 PhotoPicker 媒体框架。</span>
+              </li>
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>Android 与类安卓架构底蕴：</strong>深入理解移动操作系统生命周期、多线程异步并发模型与权限治理机制；熟练进行手机与平板多端屏幕响应式适配。</span>
+              </li>
+              <li>
+                <span class="feature-dot"></span>
+                <span><strong>本地优先与边缘通信实践：</strong>针对弱网或纯离线局域网环境，具备高可靠的端侧通信架构设计能力，实现与边缘服务器及工控设备的数据交互，确保离线自治与毫秒级即时响应。</span>
+              </li>
+            </ul>
+
+            <div class="project-actions">
+              <button class="btn btn-primary open-modal-btn" data-modal="modal-p3">
+                <span>技术架构与工程总结</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </button>
+              <a href="#contact" class="btn btn-outline magnetic">
+                <span>交流与技术探讨</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- 项目视觉展示栏 (仿手机/平板或现代卡片) -->
+          <div class="project-visual-panel">
+            <div class="mobile-mockup-wrapper tilt-element" data-tilt-max="8">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen showcase-theme-harmony">
+                  <div class="phone-app-header">
+                    <span class="time">09:41</span>
+                    <span class="icons">HarmonyOS · Stage</span>
+                  </div>
+                  <div class="phone-card-stack">
+                    <div class="app-hero-item">
+                      <div class="item-status">HARMONYOS NEXT · NATIVE</div>
+                      <div class="item-name">ArkUI 声明式组件树渲染</div>
+                      <div class="item-progress-bar"><div class="fill" style="width: 88%"></div></div>
+                    </div>
+                    <div class="app-list-item">
+                      <span class="check-box checked">✓</span>
+                      <span class="item-text">Stage 模型与多页面 Navigation</span>
+                    </div>
+                    <div class="app-list-item">
+                      <span class="check-box checked">✓</span>
+                      <span class="item-text">局域网异步数据同步与序列化</span>
+                    </div>
+                    <div class="app-list-item">
+                      <span class="check-box checked">✓</span>
+                      <span class="item-text">Android / 鸿蒙平板跨端自适应</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =================================================================
+         第5页：更多项目探索 & 联系方式 (MORE WORKS & CONTACT)
+         ================================================================= -->
+    <section class="snap-section contact-section" id="contact" data-index="4">
+      <div class="section-inner container">
+        <div class="section-header center-align">
+          <div class="section-number">MORE & CONTACT</div>
+          <h2 class="section-title">探索更多作品，或开启新的合作</h2>
+          <p class="section-subtitle">无论是探讨技术架构、设计创意，还是寻找全职与独立合作机会，都欢迎随时与我联系。</p>
+        </div>
+
+        <!-- 辅助小项目展示矩阵 (补充展示其他做过的小玩具/实验项目) -->
+        <div class="mini-projects-row">
+          <div class="mini-card">
+            <div class="mini-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            </div>
+            <div class="mini-card-content">
+              <h4>VSCode 极简高亮主题</h4>
+              <p>专为长久阅读代码定制的经典高对比柔和亮色语法着色插件。</p>
+            </div>
+            <a href="#" class="mini-card-link" aria-label="查看项目">↗</a>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            </div>
+            <div class="mini-card-content">
+              <h4>轻量物理动效 JS 库</h4>
+              <p>仅 3KB 的平滑弹簧动效工具库，零依赖支持原生 DOM 与 Canvas。</p>
+            </div>
+            <a href="#" class="mini-card-link" aria-label="查看项目">↗</a>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-card-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+            </div>
+            <div class="mini-card-content">
+              <h4>开源 Markdown 博客模板</h4>
+              <p>基于静态生成的极速博客模版，开箱即用支持暗亮色与数学公式。</p>
+            </div>
+            <a href="#" class="mini-card-link" aria-label="查看项目">↗</a>
+          </div>
+        </div>
+
+        <!-- 底部联络卡片 -->
+        <div class="contact-main-card">
+          <div class="contact-text">
+            <h3>准备好一起做点酷的事了吗？</h3>
+            <p>随时给我发一封邮件，通常在 24 小时内快速回复。</p>
+          </div>
+          
+          <div class="contact-interactive-box">
+            <div class="email-badge" id="emailBadge">
+              <span class="email-address">1978143780@qq.com</span>
+              <button class="copy-btn" id="copyEmailBtn" title="点击复制邮箱">
+                <svg class="copy-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                <span class="copy-text">复制</span>
+              </button>
+            </div>
+            
+            <a href="mailto:1978143780@qq.com" class="btn btn-primary btn-lg magnetic">
+              <span>立即写信给我</span>
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- 页脚版权与回到顶部 -->
+        <footer class="site-footer">
+          <div class="footer-copy">
+            <span>© 2026 Sacire. All rights reserved.</span>
+          </div>
+          <button class="back-to-top-btn" id="backToTopBtn">
+            <span>返回第一页</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =================================================================
+       交互弹窗 (MODALS)：供详细展开架构、设计手稿或视频演示
+       ================================================================= -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-dialog" id="modalDialog">
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="关闭">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div class="modal-body" id="modalContent">
+        <!-- 弹窗内容会由 JS 动态装载或展示对应块 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 复制成功的轻提示 Toast -->
+  <div class="toast-message" id="toastMessage">已成功复制邮箱到剪贴板！</div>
+
+  <!-- 引入交互脚本 -->
+  <script src="script.js"></script>
+</body>
+</html>

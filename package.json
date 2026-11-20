@@ -1,0 +1,12 @@
+{
+  "name": "personal-portfolio-light",
+  "version": "1.0.0",
+  "description": "现代经典亮色全屏滚动个人作品集网站框架",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "npx serve ."
+  },
+  "keywords": ["portfolio", "light-theme", "scroll-snap", "creative-web"],
+  "author": "",
+  "license": "MIT"
+}
