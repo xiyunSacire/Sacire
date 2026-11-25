@@ -1701,7 +1701,439 @@ body.cursor-hover .custom-cursor-outline {
 }
 
 /* ==========================================================================
-   第 5 页：更多项目与联系方式 (More Works & Contact)
+   MusicPlayer 桌面音乐播放器界面 Mockup (项目04)
+   ========================================================================== */
+.player-window-wrapper {
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.player-window-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+}
+
+.player-titlebar-title {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.72rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.player-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 3px 9px;
+  border-radius: var(--radius-full);
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.player-window-body {
+  padding: 0;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-main-view {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: #ffffff;
+}
+
+.player-album-card {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 14px 10px;
+  flex-shrink: 0;
+}
+
+.vinyl-record-disc {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #0f172a;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.25);
+  animation: rotateDisc 20s linear infinite;
+}
+
+@keyframes rotateDisc {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.vinyl-grooves {
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.vinyl-center-label {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #eff6ff;
+  border: 2px solid #3b82f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.player-track-meta {
+  margin-top: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.track-name {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-format-pills {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.format-pill {
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: #e2e8f0;
+  color: #475569;
+}
+
+.player-lyrics-stream {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+}
+
+.lyrics-stream-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.lyrics-mode-indicator {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.lyrics-tag-pill {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.62rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #eff6ff;
+  color: #2563eb;
+  border: 1px solid #bfdbfe;
+}
+
+.lyrics-lines-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  flex: 1;
+}
+
+.lyric-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.lyric-time {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #94a3b8;
+  padding-top: 2px;
+  flex-shrink: 0;
+}
+
+.lyric-text-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.lyric-origin {
+  font-size: 0.76rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.lyric-trans {
+  font-size: 0.66rem;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.lyric-row.past .lyric-origin { color: #94a3b8; }
+.lyric-row.past .lyric-trans  { color: #cbd5e1; }
+
+.lyric-row.active {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  position: relative;
+}
+
+.lyric-row.active .lyric-origin {
+  color: #1d4ed8;
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.lyric-row.active .lyric-trans {
+  color: #3b82f6;
+  font-weight: 500;
+}
+
+.lyric-row.active .lyric-time {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.lyric-active-pointer {
+  font-size: 0.62rem;
+  color: #2563eb;
+  align-self: center;
+}
+
+.lyric-row.future .lyric-origin { color: #64748b; }
+.lyric-row.future .lyric-trans  { color: #94a3b8; }
+
+.player-desktop-hud-banner {
+  background: #f1f5f9;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.68rem;
+}
+
+.hud-status-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+  font-weight: 600;
+  flex-wrap: wrap;
+}
+
+.hud-pill {
+  font-size: 0.62rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+}
+
+.hud-tip {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.player-controls-bottom {
+  padding: 10px 16px 12px 16px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.player-progress-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.player-seek-bar {
+  flex: 1;
+  height: 5px;
+  background: #e2e8f0;
+  border-radius: 3px;
+  position: relative;
+  cursor: pointer;
+}
+
+.seek-fill {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 3px;
+}
+
+.seek-handle {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #2563eb;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.time-stamp {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.68rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.player-buttons-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.controls-left, .controls-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.controls-right {
+  justify-content: flex-end;
+}
+
+.controls-center {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-ctrl-btn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 6px;
+  transition: all var(--transition-fast);
+}
+
+.player-ctrl-btn:hover {
+  color: #0f172a;
+  background: #f1f5f9;
+}
+
+.player-play-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.player-play-btn:hover {
+  background: #1d4ed8;
+  transform: scale(1.06);
+}
+
+.volume-slider-mock {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+}
+
+.volume-bar {
+  width: 55px;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.vol-fill {
+  height: 100%;
+  background: #64748b;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   第 6 页：更多项目与联系方式 (More Works & Contact)
    ========================================================================== */
 .mini-projects-row {
   display: grid;
@@ -1840,6 +2272,29 @@ body.cursor-hover .custom-cursor-outline {
   border-top: 1px solid var(--border-subtle);
   font-size: 0.82rem;
   color: var(--text-muted);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer-copy {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.copyright-line {
+  font-weight: 500;
+}
+
+.footer-quote {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.74rem;
+  color: var(--accent-primary);
+  background: rgba(37, 99, 235, 0.05);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(37, 99, 235, 0.14);
 }
 
 .back-to-top-btn {

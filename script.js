@@ -422,6 +422,25 @@ function initModals() {
         </div>
       `
     },
+    'modal-p4': {
+      title: 'MusicPlayer · PyQt5 桌面音乐播放器技术复盘',
+      tagline: 'PyQt5 / QMediaPlayer · 音画时间戳同步 · 双语对齐 · 穿透桌面歌词 · LRC 工作台',
+      html: `
+        <div style="font-size: 0.95rem; color: #475569; line-height: 1.7;">
+          <h4 style="color: #0f172a; margin-bottom: 8px; font-size: 1.15rem; font-weight: 700;">系统架构与核心工程突破</h4>
+          <p style="margin-bottom: 14px;">针对桌面本地音乐播放、高精度歌词同步及时间轴创作的一体化工程实践：</p>
+          <ul style="padding-left: 20px; margin-bottom: 18px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>音画时间戳同步与跳转状态机（Seek State Machine）：</strong>深入排查 Windows Media Foundation (WMF) 音频后端异步 Seek 延迟与时钟累加漂移问题，设计双向校准状态机与回落保障机制，确保点击任意歌词行即刻完成毫秒级精确重定位，根除音画脱节与界面闪回。</li>
+            <li><strong>双语时间轴解析与渲染管道：</strong>自研鲁棒性 LRC 解析引擎，精准识别并成对绑定同一时间戳下的原文与翻译歌词；结合 Qt 样式表与动态透明度，提供主次分明、沉浸优雅的高保真双语阅读体验。</li>
+            <li><strong>独立无边框置顶与鼠标穿透桌面 HUD：</strong>基于 Windows 扩展窗口属性（<code>Qt.WindowStaysOnTopHint</code> 与 <code>Qt.FramelessWindowHint</code>）构建独立桌面悬浮窗；创新支持双击快速锁定，一键激活 <code>Qt.WA_TransparentForMouseEvents</code> 鼠标事件全穿透，兼顾沉浸观感与工作流零干扰。</li>
+            <li><strong>集成化 LRC 制作微调与网络取词：</strong>内置开箱即用的专业歌词制作器，涵盖单键打点录入、时间轴逐行毫秒级微调、单句反复切片试听；支持网络数据源智能检索、自动翻译合并与本地规整化磁盘缓存。</li>
+          </ul>
+          <div style="background: rgba(248, 250, 252, 0.9); padding: 14px 18px; border-radius: 12px; border: 1px solid #e2e8f0; font-size: 0.86rem; color: #334155;">
+            <strong>工程总结：</strong>深入结合 Qt 框架的信号槽机制、事件循环与底层系统窗口特性，在 Windows 平台上实现了兼顾极简视觉质感、专业级时间轴控制与纯粹本地隐私的桌面软件工程典范。
+          </div>
+        </div>
+      `
+    },
     // ==========================================================================
     // 【请在此修改：完整技能树弹窗内容】(可自由修改算法、系统、编程技能文字与标签)
     // ==========================================================================

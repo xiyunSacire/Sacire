@@ -52,7 +52,7 @@
 ---
 
 ### 5. 多维平滑全屏切换与操控模式 (Multi-modal Full-Page Scroll-Snap)
-* **表现形态**：网站分为 5 个独立的全屏视口，支持鼠标滚轮、键盘快捷键、导航栏直达及右侧进度点指示等多通道同步。
+* **表现形态**：网站分为 6 个独立的全屏视口，支持鼠标滚轮、键盘快捷键、导航栏直达及右侧进度点指示等多通道同步。
 * **技术原理**：
   * **硬件级 CSS Scroll Snap**：主滑动容器声明 `scroll-snap-type: y mandatory`，各板块声明 `scroll-snap-align: start`，借助现代浏览器排版引擎的底层加速，实现零掉帧、零卡顿的段落对齐吸附。
   * **全功能键盘操控映射**：在全局 `keydown` 钩子中拦截并映射按键行为：
@@ -61,7 +61,7 @@
     * `Home`：直接重置回到首页顶部；
     * `End`：一键滑行至末页联系方式；
     统一通过 `section.scrollIntoView({ behavior: 'smooth' })` 驱动，防止多按冲突。
-  * **IntersectionObserver 状态双向同步**：通过设置 `threshold: 0.55` 的交叉观察器，实时判定当前主视口停留的板块索引，精准驱动顶部导航栏的高亮下划线及右侧小圆点指示器（`01` 至 `05` 编号联动），实现滑动与点击直达的双向无缝契合。
+  * **IntersectionObserver 状态双向同步**：通过设置 `threshold: 0.55` 的交叉观察器，实时判定当前主视口停留的板块索引，精准驱动顶部导航栏的高亮下划线及右侧小圆点指示器（`01` 至 `06` 编号联动），实现滑动与点击直达的双向无缝契合。
 
 ---
 
@@ -81,7 +81,8 @@
 | **02** | `#project-1` | **Agent-Arena** · 分布式大语言模型对战评估平台（纯 CSS/JS 实时对战流式终端模拟） |
 | **03** | `#project-2` | **dsh-skill-manager** · DeepSeek Harness 技能记忆管理器（DSH 原生扩展插槽与技能树 Mockup） |
 | **04** | `#project-3` | **鸿蒙与移动端开发实践** · HarmonyOS NEXT / ArkTS / ArkUI (Stage 模型) 与 Android 原生应用 |
-| **05** | `#contact` | **更多探索 & 联系方式** · 辅助作品矩阵、一键复制邮箱（带反馈 Toast）与直达信箱 |
+| **05** | `#project-4` | **MusicPlayer** · 现代化 PyQt5 桌面音乐播放器（双语歌词逐行同步、穿透悬浮桌面 HUD 与 LRC 工作台） |
+| **06** | `#contact` | **更多探索 & 联系方式** · 辅助作品矩阵（ncmMusic、file_deleter、Generative-Model）、一键复制邮箱与直达信箱 |
 
 ---
 
